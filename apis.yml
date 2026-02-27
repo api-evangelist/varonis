@@ -1,0 +1,78 @@
+name: Varonis
+description: Varonis is a pioneer in data security and analytics, specializing in software for data security, governance, threat detection and response. The company provides solutions for protecting enterprise data across cloud and on-premises environments.
+image: https://www.varonis.com/favicon.ico
+url: https://www.varonis.com
+created: '2025'
+modified: '2025'
+tags:
+- Data Security
+- Data Governance
+- Threat Detection
+- Compliance
+- Cloud Security
+- Data Analytics
+apis:
+- name: Varonis Data Security Platform API
+  description: API for integrating with Varonis Data Security Platform to manage data security policies, access permissions, and threat detection
+  image: https://www.varonis.com/favicon.ico
+  humanURL: https://www.varonis.com/products/data-security-platform
+  baseURL: https://api.varonis.com
+  tags:
+  - Data Security
+  - Access Control
+  - Permissions
+  properties:
+  - type: Documentation
+    url: https://docs.varonis.com/api
+  - type: OpenAPI
+    url: https://api.varonis.com/openapi.json
+  - type: Authentication
+    url: https://docs.varonis.com/api/authentication
+- name: Varonis DatAlert API
+  description: API for accessing threat detection and incident response capabilities from Varonis DatAlert
+  image: https://www.varonis.com/favicon.ico
+  humanURL: https://www.varonis.com/products/datalert
+  baseURL: https://api.varonis.com/datalert
+  tags:
+  - Threat Detection
+  - Security Alerts
+  - Incident Response
+  properties:
+  - type: Documentation
+    url: https://docs.varonis.com/api/datalert
+  - type: Alerts
+    url: https://docs.varonis.com/api/datalert/alerts
+- name: Varonis Data Classification API
+  description: API for automated data classification and sensitive data discovery
+  image: https://www.varonis.com/favicon.ico
+  humanURL: https://www.varonis.com/products/data-classification
+  baseURL: https://api.varonis.com/classification
+  tags:
+  - Data Classification
+  - Data Discovery
+  - Sensitive Data
+  properties:
+  - type: Documentation
+    url: https://docs.varonis.com/api/classification
+  - type: SDK
+    url: https://github.com/varonis/classification-sdk
+maintainers:
+- FN: Varonis API Team
+  email: api-support@varonis.com
+  url: https://www.varonis.com/support
+include:
+- name: Varonis Support Portal
+  url: https://support.varonis.com
+common:
+- type: Portal
+  url: https://www.varonis.com/developers
+- type: Support
+  url: https://www.varonis.com/support
+- type: Blog
+  url: https://www.varonis.com/blog
+- type: Privacy Policy
+  url: https://www.varonis.com/privacy
+- type: Terms of Service
+  url: https://www.varonis.com/terms
+- type: Status
+  url: https://status.varonis.com
