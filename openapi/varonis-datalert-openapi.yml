@@ -51,7 +51,7 @@ paths:
   /threatdetection/api/alert/alert/GetAlerts:
     post:
       operationId: getAlerts
-      summary: Get alerts
+      summary: Varonis Get alerts
       description: >-
         Retrieves alerts from Varonis DatAlert based on specified filter
         criteria. Supports filtering by threat model name, time range, alert
@@ -89,7 +89,7 @@ paths:
   /threatdetection/api/alert/alert/GetAlertedEvents:
     post:
       operationId: getAlertedEvents
-      summary: Get alerted events
+      summary: Varonis Get alerted events
       description: >-
         Retrieves the underlying events associated with a specific alert for
         forensic investigation. Returns event-level data including operation
@@ -133,7 +133,7 @@ paths:
   /threatdetection/api/alert/alert/SetAlertStatus:
     post:
       operationId: updateAlertStatus
-      summary: Update alert status
+      summary: Varonis Update alert status
       description: >-
         Updates the status of an existing alert in Varonis DatAlert. Allows
         transitioning an alert between Open and Under Investigation statuses.
@@ -175,7 +175,7 @@ paths:
   /threatdetection/api/alert/alert/CloseAlert:
     post:
       operationId: closeAlert
-      summary: Close alert
+      summary: Varonis Close alert
       description: >-
         Closes an alert in Varonis DatAlert with a specified close reason. The
         close reason helps track resolution patterns and improve threat model
@@ -219,7 +219,7 @@ paths:
   /threatdetection/api/alert/alert/AddNote:
     post:
       operationId: addAlertNote
-      summary: Add note to alert
+      summary: Varonis Add note to alert
       description: >-
         Adds a note to an existing alert in Varonis DatAlert. Notes provide
         an audit trail of investigation activities and can be used to document
@@ -262,7 +262,7 @@ paths:
   /threatdetection/api/alert/alert/GetThreatModels:
     get:
       operationId: getThreatModels
-      summary: Get threat models
+      summary: Varonis Get threat models
       description: >-
         Retrieves the list of threat models configured in Varonis DatAlert.
         Threat models define the behavioral patterns and rules used to generate
