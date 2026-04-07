@@ -1,19 +1,16 @@
 name: Varonis
-description: Varonis is a pioneer in data security and analytics, specializing 
-  in software for data security, governance, threat detection and response. The 
-  company provides solutions for protecting enterprise data across cloud and 
-  on-premises environments.
+description: Varonis is a pioneer in data security and analytics, specializing in software for data security, governance, threat detection and response. The company provides solutions for protecting enterprise data across cloud and on-premises environments.
 image: https://www.varonis.com/favicon.ico
 url: https://www.varonis.com
 created: '2025'
 modified: '2026-03-16'
 tags:
-  - Data Security
-  - Data Governance
-  - Threat Detection
-  - Compliance
   - Cloud Security
+  - Compliance
   - Data Analytics
+  - Data Governance
+  - Data Security
+  - Threat Detection
 apis:
   - name: Varonis Data Security Platform API
     description: >-
@@ -23,8 +20,8 @@ apis:
     humanURL: https://www.varonis.com/products/data-security-platform
     baseURL: https://api.varonis.com
     tags:
-      - Data Security
       - Access Control
+      - Data Security
       - Permissions
     properties:
       - type: Documentation
@@ -43,17 +40,16 @@ apis:
     humanURL: https://www.varonis.com/products/datalert
     baseURL: https://api.varonis.com/datalert
     tags:
-      - Threat Detection
-      - Security Alerts
       - Incident Response
+      - Security Alerts
+      - Threat Detection
     properties:
       - type: Documentation
         url: https://docs.varonis.com/api/datalert
       - type: Alerts
         url: https://docs.varonis.com/api/datalert/alerts
   - name: Varonis Data Classification API
-    description: API for automated data classification and sensitive data 
-      discovery across cloud and on-premises data stores.
+    description: API for automated data classification and sensitive data discovery across cloud and on-premises data stores.
     image: https://www.varonis.com/favicon.ico
     humanURL: https://www.varonis.com/products/data-classification
     baseURL: https://api.varonis.com/classification
@@ -77,13 +73,12 @@ apis:
     baseURL: https://api.varonis.com
     tags:
       - Access Governance
-      - Identity Management
       - Entitlement Reviews
+      - Identity Management
       - Self-Service Access
     properties:
       - type: Documentation
-        url: 
-          https://www.varonis.com/blog/introducing-gdpr-patterns-and-dataprivilege-api
+        url: https://www.varonis.com/blog/introducing-gdpr-patterns-and-dataprivilege-api
   - name: Varonis Reports API
     description: >-
       API for accessing and exporting Varonis report data. Allows integration
@@ -94,9 +89,9 @@ apis:
     humanURL: https://help.varonis.com/s/
     baseURL: https://api.varonis.com
     tags:
-      - Reports
       - Analytics
       - Business Intelligence
+      - Reports
     properties:
       - type: Documentation
         url: https://help.varonis.com/s/
@@ -110,9 +105,9 @@ apis:
     humanURL: https://help.varonis.com/s/
     baseURL: https://api.varonis.com
     tags:
+      - Access Control
       - Permissions
       - Remediation
-      - Access Control
     properties:
       - type: Documentation
         url: https://help.varonis.com/s/
@@ -127,9 +122,9 @@ apis:
     humanURL: https://www.varonis.com/blog/mcp-server
     baseURL: https://api.varonis.com
     tags:
-      - MCP
       - AI Integration
       - Automation
+      - MCP
       - Natural Language
     properties:
       - type: Documentation
