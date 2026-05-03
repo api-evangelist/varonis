@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-update-alert-status-request-schema.json",
+  "title": "UpdateAlertStatusRequest",
+  "description": "UpdateAlertStatusRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Unique identifier of the alert to update."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Under Investigation"
+      ],
+      "description": "New status for the alert. Use CloseAlert endpoint to close."
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional note to document the reason for the status change."
+    }
+  },
+  "required": [
+    "alertId",
+    "status"
+  ]
+}

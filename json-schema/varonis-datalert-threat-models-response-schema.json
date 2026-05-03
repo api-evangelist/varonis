@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-threat-models-response-schema.json",
+  "title": "ThreatModelsResponse",
+  "description": "ThreatModelsResponse schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "threatModels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ThreatModel"
+      },
+      "description": "Array of threat model objects."
+    }
+  }
+}

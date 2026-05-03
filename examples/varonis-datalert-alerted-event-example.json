@@ -1,0 +1,13 @@
+{
+  "id": "500123",
+  "time": "2025-03-15T14:30:00Z",
+  "operationType": "File Access",
+  "sourceAccount": "jsmith@example.com",
+  "destinationAccount": "jsmith@example.com",
+  "resource": "\\\\server\\share\\documents\\file.xlsx",
+  "ipAddress": "10.1.2.3",
+  "ipReputation": "example-value",
+  "country": "US",
+  "state": "example-value",
+  "deviceName": "Production Server 01"
+}

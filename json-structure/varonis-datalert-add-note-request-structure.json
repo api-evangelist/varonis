@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-add-note-request-structure.json",
+  "name": "AddNoteRequest",
+  "description": "AddNoteRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Unique identifier of the alert to add the note to."
+    },
+    "note": {
+      "type": "string",
+      "description": "Text content of the note to add to the alert."
+    }
+  },
+  "required": [
+    "alertId",
+    "note"
+  ]
+}

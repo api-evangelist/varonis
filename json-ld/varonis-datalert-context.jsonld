@@ -1,0 +1,201 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "varonis": "https://www.varonis.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "AddNoteRequest": "varonis:AddNoteRequest",
+    "Alert": "varonis:Alert",
+    "AlertedEvent": "varonis:AlertedEvent",
+    "AlertedEventsResponse": "varonis:AlertedEventsResponse",
+    "AlertsResponse": "varonis:AlertsResponse",
+    "CloseAlertRequest": "varonis:CloseAlertRequest",
+    "GetAlertedEventsRequest": "varonis:GetAlertedEventsRequest",
+    "GetAlertsRequest": "varonis:GetAlertsRequest",
+    "SuccessResponse": "varonis:SuccessResponse",
+    "ThreatModel": "varonis:ThreatModel",
+    "ThreatModelsResponse": "varonis:ThreatModelsResponse",
+    "UpdateAlertStatusRequest": "varonis:UpdateAlertStatusRequest",
+    "alertId": {
+      "@id": "varonis:alertId",
+      "@type": "xsd:string"
+    },
+    "note": {
+      "@id": "varonis:note",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "varonis:id",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "time": {
+      "@id": "varonis:time",
+      "@type": "xsd:dateTime"
+    },
+    "severity": {
+      "@id": "varonis:severity",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "varonis:category",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "varonis:status",
+      "@type": "xsd:string"
+    },
+    "closeReason": {
+      "@id": "varonis:closeReason",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "varonis:country",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "varonis:state",
+      "@type": "xsd:string"
+    },
+    "userName": {
+      "@id": "varonis:userName",
+      "@type": "xsd:string"
+    },
+    "userAccountType": {
+      "@id": "varonis:userAccountType",
+      "@type": "xsd:string"
+    },
+    "userDepartment": {
+      "@id": "varonis:userDepartment",
+      "@type": "xsd:string"
+    },
+    "deviceName": {
+      "@id": "varonis:deviceName",
+      "@type": "xsd:string"
+    },
+    "isMaliciousIP": {
+      "@id": "varonis:isMaliciousIP",
+      "@type": "xsd:boolean"
+    },
+    "assetPath": {
+      "@id": "varonis:assetPath",
+      "@type": "xsd:string"
+    },
+    "platform": {
+      "@id": "varonis:platform",
+      "@type": "xsd:string"
+    },
+    "eventCount": {
+      "@id": "varonis:eventCount",
+      "@type": "xsd:integer"
+    },
+    "isFlagged": {
+      "@id": "varonis:isFlagged",
+      "@type": "xsd:boolean"
+    },
+    "containsSensitiveData": {
+      "@id": "varonis:containsSensitiveData",
+      "@type": "xsd:boolean"
+    },
+    "operationType": {
+      "@id": "varonis:operationType",
+      "@type": "xsd:string"
+    },
+    "sourceAccount": {
+      "@id": "varonis:sourceAccount",
+      "@type": "xsd:string"
+    },
+    "destinationAccount": {
+      "@id": "varonis:destinationAccount",
+      "@type": "xsd:string"
+    },
+    "resource": {
+      "@id": "varonis:resource",
+      "@type": "xsd:string"
+    },
+    "ipAddress": {
+      "@id": "varonis:ipAddress",
+      "@type": "xsd:string"
+    },
+    "ipReputation": {
+      "@id": "varonis:ipReputation",
+      "@type": "xsd:string"
+    },
+    "events": {
+      "@id": "varonis:events",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "totalCount": {
+      "@id": "varonis:totalCount",
+      "@type": "xsd:integer"
+    },
+    "alerts": {
+      "@id": "varonis:alerts",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "varonis:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "varonis:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "lastDays": {
+      "@id": "varonis:lastDays",
+      "@type": "xsd:integer"
+    },
+    "extraFields": {
+      "@id": "varonis:extraFields",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "descendingOrder": {
+      "@id": "varonis:descendingOrder",
+      "@type": "xsd:boolean"
+    },
+    "threatModelName": {
+      "@id": "varonis:threatModelName",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "alertStatus": {
+      "@id": "varonis:alertStatus",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "alertSeverity": {
+      "@id": "varonis:alertSeverity",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "maxResults": {
+      "@id": "varonis:maxResults",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "varonis:offset",
+      "@type": "xsd:integer"
+    },
+    "success": {
+      "@id": "varonis:success",
+      "@type": "xsd:boolean"
+    },
+    "message": {
+      "@id": "varonis:message",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "varonis:source",
+      "@type": "xsd:string"
+    },
+    "threatModels": {
+      "@id": "varonis:threatModels",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "threatModelName": [
+    "example-value"
+  ],
+  "startTime": "2025-03-15T14:30:00Z",
+  "endTime": "2025-03-15T14:30:00Z",
+  "alertStatus": [
+    "Open"
+  ],
+  "alertSeverity": [
+    "Low"
+  ],
+  "deviceName": "Production Server 01",
+  "userName": "Production Server 01",
+  "lastDays": 42,
+  "extraFields": [
+    "example-value"
+  ],
+  "descendingOrder": true,
+  "maxResults": 42,
+  "offset": 42
+}

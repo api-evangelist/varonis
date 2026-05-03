@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-alerted-event-schema.json",
+  "title": "AlertedEvent",
+  "description": "AlertedEvent schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event."
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event occurred."
+    },
+    "operationType": {
+      "type": "string",
+      "description": "Type of operation performed such as file access, permission change, or login attempt."
+    },
+    "sourceAccount": {
+      "type": "string",
+      "description": "Account that initiated the operation."
+    },
+    "destinationAccount": {
+      "type": "string",
+      "description": "Target account affected by the operation."
+    },
+    "resource": {
+      "type": "string",
+      "description": "Resource path or name affected by the event."
+    },
+    "ipAddress": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "IP address from which the operation was performed."
+    },
+    "ipReputation": {
+      "type": "string",
+      "description": "Reputation classification of the IP address."
+    },
+    "country": {
+      "type": "string",
+      "description": "Country associated with the IP address."
+    },
+    "state": {
+      "type": "string",
+      "description": "State or region associated with the IP address."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "Name of the device from which the operation was performed."
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-add-note-request-schema.json",
+  "title": "AddNoteRequest",
+  "description": "AddNoteRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Unique identifier of the alert to add the note to."
+    },
+    "note": {
+      "type": "string",
+      "description": "Text content of the note to add to the alert."
+    }
+  },
+  "required": [
+    "alertId",
+    "note"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-get-alerted-events-request-structure.json",
+  "name": "GetAlertedEventsRequest",
+  "description": "GetAlertedEventsRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Unique identifier of the alert to retrieve events for."
+    },
+    "startTime": {
+      "type": "datetime",
+      "description": "Start of the time range for event retrieval."
+    },
+    "endTime": {
+      "type": "datetime",
+      "description": "End of the time range for event retrieval."
+    },
+    "lastDays": {
+      "type": "int32",
+      "minimum": 1,
+      "description": "Retrieve events from the last N days."
+    },
+    "extraFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional fields to include in the response."
+    },
+    "descendingOrder": {
+      "type": "boolean",
+      "description": "When true, results are returned in descending order by time."
+    }
+  },
+  "required": [
+    "alertId"
+  ]
+}

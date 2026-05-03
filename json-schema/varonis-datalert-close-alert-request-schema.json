@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-close-alert-request-schema.json",
+  "title": "CloseAlertRequest",
+  "description": "CloseAlertRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alertId": {
+      "type": "string",
+      "description": "Unique identifier of the alert to close."
+    },
+    "closeReason": {
+      "type": "string",
+      "enum": [
+        "Resolved",
+        "Misconfiguration",
+        "Threat model disabled or deleted",
+        "Account misclassification",
+        "Legitimate activity",
+        "Other"
+      ],
+      "description": "Reason for closing the alert. Helps track resolution patterns."
+    },
+    "note": {
+      "type": "string",
+      "description": "Optional note to provide additional context for closing the alert."
+    }
+  },
+  "required": [
+    "alertId",
+    "closeReason"
+  ]
+}

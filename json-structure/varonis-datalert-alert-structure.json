@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-alert-structure.json",
+  "name": "Alert",
+  "description": "Alert schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the alert."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the alert, typically derived from the threat model."
+    },
+    "time": {
+      "type": "datetime",
+      "description": "Timestamp when the alert was triggered."
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High"
+      ],
+      "description": "Severity level of the alert."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Reconnaissance",
+        "Intrusion",
+        "Exploitation",
+        "Privilege Escalation",
+        "Lateral Movement"
+      ],
+      "description": "MITRE ATT&CK-aligned category of the alert."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Under Investigation",
+        "Closed"
+      ],
+      "description": "Current status of the alert."
+    },
+    "closeReason": {
+      "type": "string",
+      "enum": [
+        "Resolved",
+        "Misconfiguration",
+        "Threat model disabled or deleted",
+        "Account misclassification",
+        "Legitimate activity",
+        "Other"
+      ],
+      "description": "Reason for closing the alert, populated only when status is Closed."
+    },
+    "country": {
+      "type": "string",
+      "description": "Country associated with the alert activity."
+    },
+    "state": {
+      "type": "string",
+      "description": "State or region associated with the alert activity."
+    },
+    "userName": {
+      "type": "string",
+      "description": "Name of the user whose activity triggered the alert."
+    },
+    "userAccountType": {
+      "type": "string",
+      "description": "Type of user account such as service account, admin, or regular user."
+    },
+    "userDepartment": {
+      "type": "string",
+      "description": "Department of the user whose activity triggered the alert."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "Name of the device involved in the alert."
+    },
+    "isMaliciousIP": {
+      "type": "boolean",
+      "description": "Indicates whether the IP address associated with the alert is known to be malicious."
+    },
+    "assetPath": {
+      "type": "string",
+      "description": "File system or resource path of the affected asset."
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Windows",
+        "Exchange",
+        "SharePoint",
+        "DNS",
+        "Active Directory",
+        "Azure AD",
+        "Microsoft 365"
+      ],
+      "description": "Platform or data source where the alert was generated."
+    },
+    "eventCount": {
+      "type": "int32",
+      "description": "Number of events associated with the alert."
+    },
+    "isFlagged": {
+      "type": "boolean",
+      "description": "Whether the alert has been flagged for special attention."
+    },
+    "containsSensitiveData": {
+      "type": "boolean",
+      "description": "Whether the affected resource contains classified sensitive data."
+    }
+  }
+}

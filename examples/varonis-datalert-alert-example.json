@@ -1,0 +1,21 @@
+{
+  "id": "500123",
+  "name": "Production Server 01",
+  "time": "2025-03-15T14:30:00Z",
+  "severity": "Low",
+  "category": "Reconnaissance",
+  "status": "Open",
+  "closeReason": "Resolved",
+  "country": "US",
+  "state": "example-value",
+  "userName": "Production Server 01",
+  "userAccountType": "jsmith@example.com",
+  "userDepartment": "Finance",
+  "deviceName": "Production Server 01",
+  "isMaliciousIP": true,
+  "assetPath": "/data/sensitive/finance/budget.xlsx",
+  "platform": "Windows",
+  "eventCount": 42,
+  "isFlagged": true,
+  "containsSensitiveData": true
+}

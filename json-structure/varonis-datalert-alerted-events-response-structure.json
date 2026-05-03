@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-alerted-events-response-structure.json",
+  "name": "AlertedEventsResponse",
+  "description": "AlertedEventsResponse schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AlertedEvent"
+      },
+      "description": "Array of event objects associated with the specified alert."
+    },
+    "totalCount": {
+      "type": "int32",
+      "description": "Total number of events associated with the alert."
+    }
+  }
+}

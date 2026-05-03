@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-alerts-response-structure.json",
+  "name": "AlertsResponse",
+  "description": "AlertsResponse schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alerts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Alert"
+      },
+      "description": "Array of alert objects matching the filter criteria."
+    },
+    "totalCount": {
+      "type": "int32",
+      "description": "Total number of alerts matching the filter criteria."
+    }
+  }
+}

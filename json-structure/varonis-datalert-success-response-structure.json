@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-structure/varonis-datalert-success-response-structure.json",
+  "name": "SuccessResponse",
+  "description": "SuccessResponse schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Indicates whether the operation completed successfully."
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable message describing the result."
+    }
+  }
+}

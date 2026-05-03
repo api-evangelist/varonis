@@ -1,0 +1,7 @@
+{
+  "id": "500123",
+  "name": "Production Server 01",
+  "category": "Intrusion",
+  "severity": "Low",
+  "source": "example-value"
+}

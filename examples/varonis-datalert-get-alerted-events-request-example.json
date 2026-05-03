@@ -1,0 +1,10 @@
+{
+  "alertId": "500123",
+  "startTime": "2025-03-15T14:30:00Z",
+  "endTime": "2025-03-15T14:30:00Z",
+  "lastDays": 42,
+  "extraFields": [
+    "example-value"
+  ],
+  "descendingOrder": true
+}

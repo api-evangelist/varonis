@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-get-alerts-request-schema.json",
+  "title": "GetAlertsRequest",
+  "description": "GetAlertsRequest schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "threatModelName": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Filter by threat model names. Supports pipe-separated values."
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the time range for alert retrieval in ISO 8601 format."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the time range for alert retrieval in ISO 8601 format."
+    },
+    "alertStatus": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Open",
+          "Under Investigation",
+          "Closed"
+        ]
+      },
+      "description": "Filter by alert status values."
+    },
+    "alertSeverity": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Low",
+          "Medium",
+          "High"
+        ]
+      },
+      "description": "Filter by alert severity levels."
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "Filter by the name of the device associated with the alert."
+    },
+    "userName": {
+      "type": "string",
+      "description": "Filter by the user name associated with the alert."
+    },
+    "lastDays": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Retrieve alerts from the last N days. Alternative to using startTime and endTime."
+    },
+    "extraFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional fields to include in the response beyond default fields."
+    },
+    "descendingOrder": {
+      "type": "boolean",
+      "description": "When true, results are returned in descending order by time."
+    },
+    "maxResults": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5000,
+      "description": "Maximum number of alerts to return in the response."
+    },
+    "offset": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of alerts to skip for pagination."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/varonis/refs/heads/main/json-schema/varonis-datalert-alerts-response-schema.json",
+  "title": "AlertsResponse",
+  "description": "AlertsResponse schema from Varonis DatAlert API",
+  "type": "object",
+  "properties": {
+    "alerts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Alert"
+      },
+      "description": "Array of alert objects matching the filter criteria."
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of alerts matching the filter criteria."
+    }
+  }
+}
