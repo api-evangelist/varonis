@@ -1,0 +1,13 @@
+{
+  "repo": "varonis",
+  "feeds": [
+    {
+      "source": "https://www.varonis.com/blog",
+      "feed_url": "https://www.varonis.com/blog/rss.xml",
+      "saved": 10,
+      "title": "Varonis Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:37:59Z"
+}
