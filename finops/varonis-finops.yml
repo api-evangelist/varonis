@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,152 +9,55 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Varonis
 providerId: varonis
-publisherName: Varonis
-serviceCategory: API
+publisherName: Varonis Systems, Inc.
+serviceCategory: Data Security
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Cloud Security
-  - Compliance
-  - Data Analytics
-  - Data Governance
   - Data Security
-  - Threat Detection
+  - Cloud Security
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Varonis API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps stub for Varonis: enterprise platform subscription with no public pricing,
+  no published meters, and no public usage/billing API. Customers receive an annual platform invoice negotiated
+  through sales.'
+sources:
+  - https://www.varonis.com/pricing
+notes: No public pricing or billing API. FinOps shape inferred from the enterprise subscription model;
+  meters are not invented. Reconciliation pending customer-portal access.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Varonis
-  ServiceCategory: Developer Tools / API
+  ServiceName: Varonis Data Security Platform
+  ServiceCategory: Data Security
   ProviderName: Varonis
-  PublisherName: Varonis
-  InvoiceIssuerName: Varonis
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Varonis Systems, Inc.
+  InvoiceIssuerName: Varonis Systems, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: platform_subscription
+    description: Annual platform subscription line; sub-meters not publicly documented.
+    unit: varies
     aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Varonis DatAlert API
-    baseURL: https://api.varonis.com/datalert
-    tags:
-      - Incident Response
-      - Security Alerts
-      - Threat Detection
-    serviceName: Varonis DatAlert API
-    serviceCategory: API
-  - name: Varonis Data Security Platform API
-    baseURL: https://api.varonis.com
-    tags:
-      - Access Control
-      - Data Security
-      - Permissions
-    serviceName: Varonis Data Security Platform API
-    serviceCategory: API
-  - name: Varonis DataPrivilege API
-    baseURL: https://api.varonis.com
-    tags:
-      - Access Governance
-      - Entitlement Reviews
-      - Identity Management
-      - Self-Service Access
-    serviceName: Varonis DataPrivilege API
-    serviceCategory: API
-  - name: Varonis MCP Server
-    baseURL: https://api.varonis.com
-    tags:
-      - AI Integration
-      - Automation
-      - MCP
-      - Natural Language
-    serviceName: Varonis MCP Server
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Varonis exposes consumption inside the platform UI (events, alerts, classification scans)
+      but does not publish a customer-facing usage/cost API. Track license utilization via the customer
+      success engagement.
+  - name: Allocation
+    description: Allocation is contract-level. Internal chargeback typically rides on data-source coverage
+      (file shares, M365 tenants, IaaS accounts) negotiated in the order form.
+  - name: Optimization
+    description: Optimization levers are scope-driven (which data sources / modules are licensed) rather
+      than usage-rate. Renewal time is the primary optimization checkpoint.
+  - name: Accountability
+    description: Accountability sits with the security team that owns the Varonis tenant; finance owns
+      the annual subscription line.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
