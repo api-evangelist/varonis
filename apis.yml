@@ -159,7 +159,7 @@ common:
     title: Threat Detection and Response
   - type: Vocabulary
     url: vocabulary/varonis-vocabulary.yaml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/varonis-datalert-context.jsonld
   - type: Features
     data:
