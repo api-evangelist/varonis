@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Varonis DatAlert API — Threat Models
+  description: 'Varonis DatAlert API — Threat Models. 1 operations. Lead operation: Varonis Get Threat Models. Self-contained
+    Naftiko capability covering one Varonis business surface.'
+  tags:
+  - Varonis
+  - Threat Models
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VARONIS_API_KEY: VARONIS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datalert-threat-models
+    baseUri: https://{domain}/api
+    description: Varonis DatAlert API — Threat Models business capability. Self-contained, no shared references.
+    resources:
+    - name: threatdetection-api-alert-alert-GetThreatModels
+      path: /threatdetection/api/alert/alert/GetThreatModels
+      operations:
+      - name: getthreatmodels
+        method: GET
+        description: Varonis Get Threat Models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.VARONIS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: datalert-threat-models-rest
+    port: 8080
+    description: REST adapter for Varonis DatAlert API — Threat Models. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/threatdetection/api/alert/alert/getthreatmodels
+      name: threatdetection-api-alert-alert-getthreatmodels
+      description: REST surface for threatdetection-api-alert-alert-GetThreatModels.
+      operations:
+      - method: GET
+        name: getthreatmodels
+        description: Varonis Get Threat Models
+        call: datalert-threat-models.getthreatmodels
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datalert-threat-models-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Varonis DatAlert API — Threat Models. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: varonis-get-threat-models
+      description: Varonis Get Threat Models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datalert-threat-models.getthreatmodels
+      outputParameters:
+      - type: object
+        mapping: $.
