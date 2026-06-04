@@ -1,0 +1,128 @@
+arazzo: 1.0.1
+info:
+  title: Varonis Close Low-Severity Noise
+  summary: Find the newest low-severity open alert, note it, and close it as legitimate activity.
+  description: >-
+    A noise-reduction workflow for keeping the DatAlert queue clean. It finds the
+    newest low-severity open alert, records a note explaining the auto-closure to
+    preserve the audit trail, and then closes the alert with a tracked close
+    reason. Each step inlines its request so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datalertApi
+  url: ../openapi/varonis-datalert-openapi.yml
+  type: openapi
+workflows:
+- workflowId: close-low-severity-noise
+  summary: Auto-close the newest low-severity open alert with an audit note.
+  description: >-
+    Retrieves the newest low-severity open alert, adds an explanatory note, and
+    closes it with the supplied close reason to reduce queue noise.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Varonis DatAlert API key sent in the X-API-Key header.
+      lastDays:
+        type: integer
+        description: How many days back to search for low-severity alerts.
+        default: 7
+      closeReason:
+        type: string
+        description: Reason for closing the low-severity alert.
+        enum:
+        - Resolved
+        - Misconfiguration
+        - Threat model disabled or deleted
+        - Account misclassification
+        - Legitimate activity
+        - Other
+        default: Legitimate activity
+      note:
+        type: string
+        description: Audit note explaining the closure.
+        default: Auto-closed low-severity alert during queue cleanup.
+  steps:
+  - stepId: getLowSeverityAlert
+    description: >-
+      Retrieve the newest open low-severity alert to consider for automatic
+      closure.
+    operationId: getAlerts
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertStatus:
+        - Open
+        alertSeverity:
+        - Low
+        lastDays: $inputs.lastDays
+        descendingOrder: true
+        maxResults: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      alertId: $response.body#/alerts/0/id
+      alertName: $response.body#/alerts/0/name
+    onSuccess:
+    - name: haveAlert
+      type: goto
+      stepId: addClosureNote
+      criteria:
+      - context: $response.body
+        condition: $.alerts.length > 0
+        type: jsonpath
+    - name: noAlert
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.alerts.length == 0
+        type: jsonpath
+  - stepId: addClosureNote
+    description: >-
+      Record an audit note on the alert explaining why it is being auto-closed.
+    operationId: addAlertNote
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getLowSeverityAlert.outputs.alertId
+        note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      noteAdded: $response.body#/success
+  - stepId: closeAlert
+    description: >-
+      Close the low-severity alert with the supplied close reason to clear it
+      from the active queue.
+    operationId: closeAlert
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getLowSeverityAlert.outputs.alertId
+        closeReason: $inputs.closeReason
+        note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closed: $response.body#/success
+  outputs:
+    alertId: $steps.getLowSeverityAlert.outputs.alertId
+    alertName: $steps.getLowSeverityAlert.outputs.alertName
+    noteAdded: $steps.addClosureNote.outputs.noteAdded
+    closed: $steps.closeAlert.outputs.closed

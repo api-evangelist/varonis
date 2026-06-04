@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Varonis User High-Severity Investigation
+  summary: Find a user's high-severity alerts, pull the top alert's events, and annotate it.
+  description: >-
+    A user-centric insider-threat workflow. It searches DatAlert for
+    high-severity alerts attributed to a specific user name, retrieves the
+    forensic events behind the highest-priority alert for that user, and records
+    an annotation note on the alert so the user investigation is documented.
+    Each step inlines its request so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datalertApi
+  url: ../openapi/varonis-datalert-openapi.yml
+  type: openapi
+workflows:
+- workflowId: user-high-severity-investigation
+  summary: Investigate a user's high-severity alerts and annotate the top one.
+  description: >-
+    Retrieves high-severity alerts for a given user name, loads the events for
+    the newest such alert, and adds an investigation note to that alert.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - userName
+    properties:
+      apiKey:
+        type: string
+        description: Varonis DatAlert API key sent in the X-API-Key header.
+      userName:
+        type: string
+        description: The user name whose high-severity alerts are being investigated.
+      lastDays:
+        type: integer
+        description: How many days back to search for alerts.
+        default: 30
+      note:
+        type: string
+        description: Annotation recorded against the investigated alert.
+        default: User high-severity alert opened for insider-threat review.
+  steps:
+  - stepId: getUserAlerts
+    description: >-
+      Retrieve high-severity alerts attributed to the supplied user name in
+      descending time order.
+    operationId: getAlerts
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        userName: $inputs.userName
+        alertSeverity:
+        - High
+        lastDays: $inputs.lastDays
+        descendingOrder: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topAlertId: $response.body#/alerts/0/id
+      topAlertCategory: $response.body#/alerts/0/category
+      userDepartment: $response.body#/alerts/0/userDepartment
+      totalCount: $response.body#/totalCount
+    onSuccess:
+    - name: haveAlerts
+      type: goto
+      stepId: getTopAlertEvents
+      criteria:
+      - context: $response.body
+        condition: $.alerts.length > 0
+        type: jsonpath
+    - name: noAlerts
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.alerts.length == 0
+        type: jsonpath
+  - stepId: getTopAlertEvents
+    description: >-
+      Load the forensic events for the user's highest-priority alert to
+      understand the activity that triggered it.
+    operationId: getAlertedEvents
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getUserAlerts.outputs.topAlertId
+        lastDays: $inputs.lastDays
+        descendingOrder: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      events: $response.body#/events
+      eventCount: $response.body#/totalCount
+  - stepId: annotateAlert
+    description: >-
+      Record an investigation note on the user's top alert to document that the
+      insider-threat review has started.
+    operationId: addAlertNote
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getUserAlerts.outputs.topAlertId
+        note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      noteAdded: $response.body#/success
+  outputs:
+    topAlertId: $steps.getUserAlerts.outputs.topAlertId
+    userDepartment: $steps.getUserAlerts.outputs.userDepartment
+    eventCount: $steps.getTopAlertEvents.outputs.eventCount
+    noteAdded: $steps.annotateAlert.outputs.noteAdded

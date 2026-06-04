@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Varonis Sensitive Data Alert Escalation
+  summary: Pull the newest open alert and branch on whether it touches classified sensitive data.
+  description: >-
+    A data-classification-aware escalation workflow. It retrieves the newest
+    open alert and inspects whether the affected resource contains classified
+    sensitive data. Alerts touching sensitive data are escalated into the Under
+    Investigation status with an escalation note, while alerts that do not are
+    closed as legitimate activity. Each step inlines its request so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datalertApi
+  url: ../openapi/varonis-datalert-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sensitive-data-alert-escalation
+  summary: Escalate sensitive-data alerts and close non-sensitive ones.
+  description: >-
+    Retrieves the newest open alert, then branches on the containsSensitiveData
+    flag to either escalate it into investigation or close it as legitimate
+    activity.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    properties:
+      apiKey:
+        type: string
+        description: Varonis DatAlert API key sent in the X-API-Key header.
+      lastDays:
+        type: integer
+        description: How many days back to search for open alerts.
+        default: 7
+      escalationNote:
+        type: string
+        description: Note recorded when an alert is escalated.
+        default: Alert touches classified sensitive data; escalating for review.
+  steps:
+  - stepId: getNewestOpenAlert
+    description: >-
+      Retrieve the newest open alert, including the sensitive-data flag, so the
+      escalation decision can be made.
+    operationId: getAlerts
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertStatus:
+        - Open
+        lastDays: $inputs.lastDays
+        descendingOrder: true
+        maxResults: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      alertId: $response.body#/alerts/0/id
+      containsSensitiveData: $response.body#/alerts/0/containsSensitiveData
+      assetPath: $response.body#/alerts/0/assetPath
+    onSuccess:
+    - name: sensitive
+      type: goto
+      stepId: escalateAlert
+      criteria:
+      - context: $response.body
+        condition: $.alerts[0].containsSensitiveData == true
+        type: jsonpath
+    - name: notSensitive
+      type: goto
+      stepId: closeAsLegitimate
+      criteria:
+      - context: $response.body
+        condition: $.alerts[0].containsSensitiveData == false
+        type: jsonpath
+  - stepId: escalateAlert
+    description: >-
+      Escalate the alert into Under Investigation status because it affects a
+      resource containing classified sensitive data.
+    operationId: updateAlertStatus
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getNewestOpenAlert.outputs.alertId
+        status: Under Investigation
+        note: $inputs.escalationNote
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      escalated: $response.body#/success
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: closeAsLegitimate
+    description: >-
+      Close the alert as legitimate activity because the affected resource does
+      not contain classified sensitive data.
+    operationId: closeAlert
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $steps.getNewestOpenAlert.outputs.alertId
+        closeReason: Legitimate activity
+        note: Auto-closed; affected resource contains no classified sensitive data.
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closed: $response.body#/success
+  outputs:
+    alertId: $steps.getNewestOpenAlert.outputs.alertId
+    assetPath: $steps.getNewestOpenAlert.outputs.assetPath
+    escalated: $steps.escalateAlert.outputs.escalated
+    closed: $steps.closeAsLegitimate.outputs.closed

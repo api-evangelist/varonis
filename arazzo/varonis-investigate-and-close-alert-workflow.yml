@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: Varonis Investigate and Close Alert
+  summary: Pull events for a known alert, document findings as a note, then close it.
+  description: >-
+    Resolution workflow for a specific DatAlert alert that an analyst has
+    already identified. It retrieves the alerted events for forensic review,
+    appends an investigation note capturing the findings to preserve the audit
+    trail, and then closes the alert with an explicit close reason. Each step
+    inlines its request so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: datalertApi
+  url: ../openapi/varonis-datalert-openapi.yml
+  type: openapi
+workflows:
+- workflowId: investigate-and-close-alert
+  summary: Review a single alert's events, add a findings note, and close it.
+  description: >-
+    Loads the events for a supplied alert id, records an investigation note as
+    an audit trail entry, and closes the alert with the provided close reason.
+  inputs:
+    type: object
+    required:
+    - apiKey
+    - alertId
+    - note
+    - closeReason
+    properties:
+      apiKey:
+        type: string
+        description: Varonis DatAlert API key sent in the X-API-Key header.
+      alertId:
+        type: string
+        description: Unique identifier of the alert to investigate and close.
+      note:
+        type: string
+        description: Investigation findings recorded against the alert.
+      closeReason:
+        type: string
+        description: >-
+          Reason for closing the alert. One of Resolved, Misconfiguration,
+          Threat model disabled or deleted, Account misclassification,
+          Legitimate activity, or Other.
+        enum:
+        - Resolved
+        - Misconfiguration
+        - Threat model disabled or deleted
+        - Account misclassification
+        - Legitimate activity
+        - Other
+  steps:
+  - stepId: getEvents
+    description: >-
+      Retrieve the forensic events for the supplied alert id so the analyst can
+      review the activity that triggered the detection.
+    operationId: getAlertedEvents
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $inputs.alertId
+        descendingOrder: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      events: $response.body#/events
+      eventCount: $response.body#/totalCount
+  - stepId: addFindingsNote
+    description: >-
+      Append the investigation findings to the alert as a note so the rationale
+      for closing is preserved in the audit trail.
+    operationId: addAlertNote
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $inputs.alertId
+        note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      noteAdded: $response.body#/success
+  - stepId: closeAlert
+    description: >-
+      Close the alert with the provided close reason to track the resolution
+      pattern.
+    operationId: closeAlert
+    parameters:
+    - name: X-API-Key
+      in: header
+      value: $inputs.apiKey
+    requestBody:
+      contentType: application/json
+      payload:
+        alertId: $inputs.alertId
+        closeReason: $inputs.closeReason
+        note: $inputs.note
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closed: $response.body#/success
+      message: $response.body#/message
+  outputs:
+    eventCount: $steps.getEvents.outputs.eventCount
+    noteAdded: $steps.addFindingsNote.outputs.noteAdded
+    closed: $steps.closeAlert.outputs.closed

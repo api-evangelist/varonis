@@ -115,6 +115,33 @@ include:
   - name: Varonis Support Portal
     url: https://support.varonis.com
 common:
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+    - url: arazzo/varonis-close-low-severity-noise-workflow.yml
+      name: Varonis Close Low-Severity Noise
+      summary: Find the newest low-severity open alert, note it, and close it as legitimate activity.
+    - url: arazzo/varonis-device-malicious-ip-response-workflow.yml
+      name: Varonis Device Malicious IP Response
+      summary: Pull a device's newest alert, and if it involves a malicious IP, fetch events and investigate.
+    - url: arazzo/varonis-high-severity-model-coverage-workflow.yml
+      name: Varonis High-Severity Model Coverage
+      summary: List threat models, pull alerts for one model, and annotate its newest alert.
+    - url: arazzo/varonis-investigate-and-close-alert-workflow.yml
+      name: Varonis Investigate and Close Alert
+      summary: Pull events for a known alert, document findings as a note, then close it.
+    - url: arazzo/varonis-sensitive-data-alert-escalation-workflow.yml
+      name: Varonis Sensitive Data Alert Escalation
+      summary: Pull the newest open alert and branch on whether it touches classified sensitive data.
+    - url: arazzo/varonis-threat-model-hunt-workflow.yml
+      name: Varonis Threat Model Hunt
+      summary: Resolve a threat model by name, pull its recent alerts, and load the newest alert's events.
+    - url: arazzo/varonis-triage-alert-workflow.yml
+      name: Varonis Triage Newest Alert
+      summary: Pull the newest open alert, load its forensic events, and move it into investigation.
+    - url: arazzo/varonis-user-high-severity-investigation-workflow.yml
+      name: Varonis User High-Severity Investigation
+      summary: Find a user's high-severity alerts, pull the top alert's events, and annotate it.
   - type: LinkedIn
     url: https://www.linkedin.com/company/varonis
   - type: Portal
