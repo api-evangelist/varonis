@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Varonis DatAlert API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Varonis Get Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/GetAlerts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves alerts from Varonis DatAlert based on specified filter criteria. Supports filtering by threat model name, time range, alert status, severity, device name, and user name. Returns comprehensive alert data including severity, category, status, user details, device information, and asset paths."
+        },
+        {
+          "info": {
+            "name": "Varonis Update Alert Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/SetAlertStatus",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status of an existing alert in Varonis DatAlert. Allows transitioning an alert between Open and Under Investigation statuses. Optionally accepts a note to document the reason for the status change."
+        },
+        {
+          "info": {
+            "name": "Varonis Close Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/CloseAlert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Closes an alert in Varonis DatAlert with a specified close reason. The close reason helps track resolution patterns and improve threat model accuracy over time. Supported reasons include Resolved, Misconfiguration, Threat model disabled or deleted, Account misclassification, Legitimate activity, and Other."
+        },
+        {
+          "info": {
+            "name": "Varonis Add Note to Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/AddNote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a note to an existing alert in Varonis DatAlert. Notes provide an audit trail of investigation activities and can be used to document findings, remediation steps, or communication between security team members during incident response."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Varonis Get Alerted Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/GetAlertedEvents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves the underlying events associated with a specific alert for forensic investigation. Returns event-level data including operation types, source and destination accounts, affected resources, IP addresses, and geolocation information. Essential for threat hunting and understanding the full scope of a security incident."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Threat Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Varonis Get Threat Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/GetThreatModels",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of threat models configured in Varonis DatAlert. Threat models define the behavioral patterns and rules used to generate alerts. Each threat model includes a name, category, severity level, and source classification. Supports optional filtering by name with wildcard support."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

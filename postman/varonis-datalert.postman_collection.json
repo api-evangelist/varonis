@@ -1,0 +1,1667 @@
+{
+  "info": {
+    "_postman_id": "c4084be8-c69b-4595-b402-5ba57770d0a7",
+    "name": "Varonis DatAlert API",
+    "description": "API for accessing threat detection and incident response capabilities from Varonis DatAlert. Provides endpoints for retrieving alerts, managing alert status, adding notes to alerts, and accessing alerted events for investigation and threat hunting. The DatAlert API enables integration with SIEM and SOAR platforms for centralized security operations.\n\nContact Support:\n Name: Varonis Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:19:35.000Z",
+    "updatedAt": "2026-06-05T15:19:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4084be8-c69b-4595-b402-5ba57770d0a7"
+  },
+  "item": [
+    {
+      "name": "threatdetection",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "alert",
+              "item": [
+                {
+                  "name": "alert",
+                  "item": [
+                    {
+                      "name": "GetAlerts",
+                      "item": [
+                        {
+                          "name": "Varonis Get Alerts",
+                          "id": "265462db-e808-4aa1-b4bb-fa3ec088fe8e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"threatModelName\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"alertStatus\": [\n    \"Open\",\n    \"Closed\"\n  ],\n  \"alertSeverity\": [\n    \"Medium\",\n    \"High\"\n  ],\n  \"deviceName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlerts",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "GetAlerts"
+                              ]
+                            },
+                            "description": "Retrieves alerts from Varonis DatAlert based on specified filter criteria. Supports filtering by threat model name, time range, alert status, severity, device name, and user name. Returns comprehensive alert data including severity, category, status, user details, device information, and asset paths."
+                          },
+                          "response": [
+                            {
+                              "id": "96b8b453-8b37-4d2e-8d37-057ac913a2e6",
+                              "name": "Successfully retrieved alerts",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"threatModelName\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"alertStatus\": [\n    \"Open\",\n    \"Closed\"\n  ],\n  \"alertSeverity\": [\n    \"Medium\",\n    \"High\"\n  ],\n  \"deviceName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlerts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlerts"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"alerts\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"severity\": \"Medium\",\n      \"category\": \"Privilege Escalation\",\n      \"status\": \"Under Investigation\",\n      \"closeReason\": \"Threat model disabled or deleted\",\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"userAccountType\": \"<string>\",\n      \"userDepartment\": \"<string>\",\n      \"deviceName\": \"<string>\",\n      \"isMaliciousIP\": \"<boolean>\",\n      \"assetPath\": \"<string>\",\n      \"platform\": \"SharePoint\",\n      \"eventCount\": \"<integer>\",\n      \"isFlagged\": \"<boolean>\",\n      \"containsSensitiveData\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"severity\": \"Low\",\n      \"category\": \"Reconnaissance\",\n      \"status\": \"Under Investigation\",\n      \"closeReason\": \"Legitimate activity\",\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"userAccountType\": \"<string>\",\n      \"userDepartment\": \"<string>\",\n      \"deviceName\": \"<string>\",\n      \"isMaliciousIP\": \"<boolean>\",\n      \"assetPath\": \"<string>\",\n      \"platform\": \"Active Directory\",\n      \"eventCount\": \"<integer>\",\n      \"isFlagged\": \"<boolean>\",\n      \"containsSensitiveData\": \"<boolean>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-96b8b453-8b37-4d2e-8d37-057ac913a2e6"
+                            },
+                            {
+                              "id": "44fe8a12-fea3-4cdd-97c8-631a88907767",
+                              "name": "Bad request - invalid parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"threatModelName\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"alertStatus\": [\n    \"Open\",\n    \"Closed\"\n  ],\n  \"alertSeverity\": [\n    \"Medium\",\n    \"High\"\n  ],\n  \"deviceName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlerts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlerts"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-44fe8a12-fea3-4cdd-97c8-631a88907767"
+                            },
+                            {
+                              "id": "7b621d7d-45f3-401a-bb92-14fdcfc8c0f3",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"threatModelName\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"alertStatus\": [\n    \"Open\",\n    \"Closed\"\n  ],\n  \"alertSeverity\": [\n    \"Medium\",\n    \"High\"\n  ],\n  \"deviceName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\",\n  \"maxResults\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlerts",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlerts"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-7b621d7d-45f3-401a-bb92-14fdcfc8c0f3"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-265462db-e808-4aa1-b4bb-fa3ec088fe8e"
+                        }
+                      ],
+                      "id": "1ce667b8-3842-4e52-be25-d6a280658651",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-1ce667b8-3842-4e52-be25-d6a280658651"
+                    },
+                    {
+                      "name": "GetAlertedEvents",
+                      "item": [
+                        {
+                          "name": "Varonis Get Alerted Events",
+                          "id": "236b649a-6521-4241-aa7b-6d901a35c23f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlertedEvents",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "GetAlertedEvents"
+                              ]
+                            },
+                            "description": "Retrieves the underlying events associated with a specific alert for forensic investigation. Returns event-level data including operation types, source and destination accounts, affected resources, IP addresses, and geolocation information. Essential for threat hunting and understanding the full scope of a security incident."
+                          },
+                          "response": [
+                            {
+                              "id": "3bcecff9-f994-4f68-b293-a17de7a95aaa",
+                              "name": "Successfully retrieved alerted events",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlertedEvents",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlertedEvents"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"events\": [\n    {\n      \"id\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"operationType\": \"<string>\",\n      \"sourceAccount\": \"<string>\",\n      \"destinationAccount\": \"<string>\",\n      \"resource\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"ipReputation\": \"<string>\",\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"deviceName\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"time\": \"<dateTime>\",\n      \"operationType\": \"<string>\",\n      \"sourceAccount\": \"<string>\",\n      \"destinationAccount\": \"<string>\",\n      \"resource\": \"<string>\",\n      \"ipAddress\": \"<ipv4>\",\n      \"ipReputation\": \"<string>\",\n      \"country\": \"<string>\",\n      \"state\": \"<string>\",\n      \"deviceName\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-3bcecff9-f994-4f68-b293-a17de7a95aaa"
+                            },
+                            {
+                              "id": "9081a1e6-97c3-4cc9-808e-7b753464db7b",
+                              "name": "Bad request - invalid parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlertedEvents",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlertedEvents"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-9081a1e6-97c3-4cc9-808e-7b753464db7b"
+                            },
+                            {
+                              "id": "8efd682a-0467-47f6-b90e-b33d646cb2e3",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlertedEvents",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlertedEvents"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-8efd682a-0467-47f6-b90e-b33d646cb2e3"
+                            },
+                            {
+                              "id": "c1a47854-405f-43c7-8c54-e5110e36d828",
+                              "name": "Alert not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetAlertedEvents",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetAlertedEvents"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-c1a47854-405f-43c7-8c54-e5110e36d828"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-236b649a-6521-4241-aa7b-6d901a35c23f"
+                        }
+                      ],
+                      "id": "9783bfb5-9f8f-4bfd-91c4-bb106c7b8219",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-9783bfb5-9f8f-4bfd-91c4-bb106c7b8219"
+                    },
+                    {
+                      "name": "SetAlertStatus",
+                      "item": [
+                        {
+                          "name": "Varonis Update Alert Status",
+                          "id": "bcc16bd1-d841-4210-adf6-4cc05416847c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alertId\": \"<string>\",\n  \"status\": \"Open\",\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/SetAlertStatus",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "SetAlertStatus"
+                              ]
+                            },
+                            "description": "Updates the status of an existing alert in Varonis DatAlert. Allows transitioning an alert between Open and Under Investigation statuses. Optionally accepts a note to document the reason for the status change."
+                          },
+                          "response": [
+                            {
+                              "id": "2e437574-589d-42cf-8c7f-5e3c2b8167a8",
+                              "name": "Alert status updated successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"status\": \"Open\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/SetAlertStatus",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "SetAlertStatus"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-2e437574-589d-42cf-8c7f-5e3c2b8167a8"
+                            },
+                            {
+                              "id": "f68d44d4-752e-4cb4-87ed-74bce9752f72",
+                              "name": "Bad request - invalid parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"status\": \"Open\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/SetAlertStatus",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "SetAlertStatus"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-f68d44d4-752e-4cb4-87ed-74bce9752f72"
+                            },
+                            {
+                              "id": "d3391fd1-80fe-47d2-8c8d-bde3baa8ce4b",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"status\": \"Open\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/SetAlertStatus",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "SetAlertStatus"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-d3391fd1-80fe-47d2-8c8d-bde3baa8ce4b"
+                            },
+                            {
+                              "id": "0470950f-7eb2-4b97-afde-d539ff21c4fe",
+                              "name": "Alert not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"status\": \"Open\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/SetAlertStatus",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "SetAlertStatus"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-0470950f-7eb2-4b97-afde-d539ff21c4fe"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-bcc16bd1-d841-4210-adf6-4cc05416847c"
+                        }
+                      ],
+                      "id": "61c70390-799b-401e-801b-4c24369aa722",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-61c70390-799b-401e-801b-4c24369aa722"
+                    },
+                    {
+                      "name": "CloseAlert",
+                      "item": [
+                        {
+                          "name": "Varonis Close Alert",
+                          "id": "a3daf32d-d14c-44de-92c9-0864271a4397",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alertId\": \"<string>\",\n  \"closeReason\": \"Resolved\",\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/CloseAlert",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "CloseAlert"
+                              ]
+                            },
+                            "description": "Closes an alert in Varonis DatAlert with a specified close reason. The close reason helps track resolution patterns and improve threat model accuracy over time. Supported reasons include Resolved, Misconfiguration, Threat model disabled or deleted, Account misclassification, Legitimate activity, and Other."
+                          },
+                          "response": [
+                            {
+                              "id": "4b13a546-3bc8-49ce-b682-0cee15666d69",
+                              "name": "Alert closed successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"closeReason\": \"Resolved\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/CloseAlert",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "CloseAlert"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-4b13a546-3bc8-49ce-b682-0cee15666d69"
+                            },
+                            {
+                              "id": "8e18da10-b5e0-4a13-a2ec-d876cde251e1",
+                              "name": "Bad request - invalid parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"closeReason\": \"Resolved\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/CloseAlert",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "CloseAlert"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-8e18da10-b5e0-4a13-a2ec-d876cde251e1"
+                            },
+                            {
+                              "id": "4c2be9bb-9d5e-4dbc-8417-1f4e01fba7cf",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"closeReason\": \"Resolved\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/CloseAlert",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "CloseAlert"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-4c2be9bb-9d5e-4dbc-8417-1f4e01fba7cf"
+                            },
+                            {
+                              "id": "f13804b0-184c-4fa3-9259-754f3228b5b5",
+                              "name": "Alert not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"closeReason\": \"Resolved\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/CloseAlert",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "CloseAlert"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-f13804b0-184c-4fa3-9259-754f3228b5b5"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-a3daf32d-d14c-44de-92c9-0864271a4397"
+                        }
+                      ],
+                      "id": "629920ec-340c-4e44-a811-d0ab77098691",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-629920ec-340c-4e44-a811-d0ab77098691"
+                    },
+                    {
+                      "name": "AddNote",
+                      "item": [
+                        {
+                          "name": "Varonis Add Note to Alert",
+                          "id": "ce6b880a-19ab-40c8-a0d5-27adcd84db38",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alertId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/AddNote",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "AddNote"
+                              ]
+                            },
+                            "description": "Adds a note to an existing alert in Varonis DatAlert. Notes provide an audit trail of investigation activities and can be used to document findings, remediation steps, or communication between security team members during incident response."
+                          },
+                          "response": [
+                            {
+                              "id": "0c4b0f55-957a-4c09-8bd6-9eda6ae9b3dd",
+                              "name": "Note added successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/AddNote",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "AddNote"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-0c4b0f55-957a-4c09-8bd6-9eda6ae9b3dd"
+                            },
+                            {
+                              "id": "4c8e4f5a-0d03-4edc-8554-fd05efc072b4",
+                              "name": "Bad request - invalid parameters",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/AddNote",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "AddNote"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-4c8e4f5a-0d03-4edc-8554-fd05efc072b4"
+                            },
+                            {
+                              "id": "5d6f4e56-751e-4cf1-84bf-5dfd3e89d6be",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/AddNote",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "AddNote"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-5d6f4e56-751e-4cf1-84bf-5dfd3e89d6be"
+                            },
+                            {
+                              "id": "3e3975b7-d2e1-46c8-88d8-ef9422214f2d",
+                              "name": "Alert not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"alertId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/AddNote",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "AddNote"
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-3e3975b7-d2e1-46c8-88d8-ef9422214f2d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-ce6b880a-19ab-40c8-a0d5-27adcd84db38"
+                        }
+                      ],
+                      "id": "be53a0cb-0605-4966-99a2-9ebd7773adb6",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-be53a0cb-0605-4966-99a2-9ebd7773adb6"
+                    },
+                    {
+                      "name": "GetThreatModels",
+                      "item": [
+                        {
+                          "name": "Varonis Get Threat Models",
+                          "id": "eb533d97-7ee2-4a87-a285-97de7269754e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetThreatModels?name=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "threatdetection",
+                                "api",
+                                "alert",
+                                "alert",
+                                "GetThreatModels"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching.",
+                                  "key": "name",
+                                  "value": "<string>"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves the list of threat models configured in Varonis DatAlert. Threat models define the behavioral patterns and rules used to generate alerts. Each threat model includes a name, category, severity level, and source classification. Supports optional filtering by name with wildcard support."
+                          },
+                          "response": [
+                            {
+                              "id": "bf8615f5-48bb-4fd9-9f40-93cc56830de5",
+                              "name": "Successfully retrieved threat models",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetThreatModels?name=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetThreatModels"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"threatModels\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"severity\": \"Medium\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"category\": \"<string>\",\n      \"severity\": \"Medium\",\n      \"source\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-bf8615f5-48bb-4fd9-9f40-93cc56830de5"
+                            },
+                            {
+                              "id": "f3cf76d7-9ad3-48c5-8fd5-ae7cd44cf15a",
+                              "name": "Unauthorized - invalid or missing API key",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/threatdetection/api/alert/alert/GetThreatModels?name=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "threatdetection",
+                                    "api",
+                                    "alert",
+                                    "alert",
+                                    "GetThreatModels"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:19:36.000Z",
+                              "updatedAt": "2026-06-05T15:19:36.000Z",
+                              "uid": "35240-f3cf76d7-9ad3-48c5-8fd5-ae7cd44cf15a"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:19:36.000Z",
+                          "updatedAt": "2026-06-05T15:19:36.000Z",
+                          "uid": "35240-eb533d97-7ee2-4a87-a285-97de7269754e"
+                        }
+                      ],
+                      "id": "dac41dc1-ed8d-48b3-8a4a-31ccf672628d",
+                      "createdAt": "2026-06-05T15:19:36.000Z",
+                      "updatedAt": "2026-06-05T15:19:36.000Z",
+                      "uid": "35240-dac41dc1-ed8d-48b3-8a4a-31ccf672628d"
+                    }
+                  ],
+                  "id": "b05f9065-523e-45b7-89b4-905fefcf5fbe",
+                  "createdAt": "2026-06-05T15:19:36.000Z",
+                  "updatedAt": "2026-06-05T15:19:36.000Z",
+                  "uid": "35240-b05f9065-523e-45b7-89b4-905fefcf5fbe"
+                }
+              ],
+              "id": "4e2d1aec-4fca-4859-8fef-ecc1f2b459b2",
+              "createdAt": "2026-06-05T15:19:36.000Z",
+              "updatedAt": "2026-06-05T15:19:36.000Z",
+              "uid": "35240-4e2d1aec-4fca-4859-8fef-ecc1f2b459b2"
+            }
+          ],
+          "id": "79ca3400-31e4-430f-b0fa-328bb0088842",
+          "createdAt": "2026-06-05T15:19:36.000Z",
+          "updatedAt": "2026-06-05T15:19:36.000Z",
+          "uid": "35240-79ca3400-31e4-430f-b0fa-328bb0088842"
+        }
+      ],
+      "id": "d9b2fd99-b5df-49b3-8193-5b94605dcc73",
+      "createdAt": "2026-06-05T15:19:36.000Z",
+      "updatedAt": "2026-06-05T15:19:36.000Z",
+      "uid": "35240-d9b2fd99-b5df-49b3-8193-5b94605dcc73"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "domain",
+      "value": "your-instance.varonis.io"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{domain}}/api"
+    }
+  ]
+}
