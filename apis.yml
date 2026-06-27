@@ -50,10 +50,10 @@ apis:
       - type: JSONStructure
         url: json-structure/varonis-datalert-alerted-event-structure.json
         title: Alerted Event Structure
-      - type: Example
+      - type: Examples
         url: examples/varonis-datalert-alert-example.json
         title: Alert Example
-      - type: Example
+      - type: Examples
         url: examples/varonis-datalert-alerted-event-example.json
         title: Alerted Event Example
   - name: Varonis Data Security Platform API
@@ -104,7 +104,7 @@ apis:
     properties:
       - type: Documentation
         url: https://www.varonis.com/blog/mcp-server
-      - type: SDK
+      - type: SDKs
         url: https://www.npmjs.com/package/@varonis/mcp
         title: MCP Server npm Package
 maintainers:
@@ -117,33 +117,30 @@ include:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/varonis/overview
-  - type: ArazzoWorkflows
-    url: arazzo/
-    workflows:
-      - url: arazzo/varonis-close-low-severity-noise-workflow.yml
-        name: Varonis Close Low-Severity Noise
-        summary: Find the newest low-severity open alert, note it, and close it as legitimate activity.
-      - url: arazzo/varonis-device-malicious-ip-response-workflow.yml
-        name: Varonis Device Malicious IP Response
-        summary: Pull a device's newest alert, and if it involves a malicious IP, fetch events and investigate.
-      - url: arazzo/varonis-high-severity-model-coverage-workflow.yml
-        name: Varonis High-Severity Model Coverage
-        summary: List threat models, pull alerts for one model, and annotate its newest alert.
-      - url: arazzo/varonis-investigate-and-close-alert-workflow.yml
-        name: Varonis Investigate and Close Alert
-        summary: Pull events for a known alert, document findings as a note, then close it.
-      - url: arazzo/varonis-sensitive-data-alert-escalation-workflow.yml
-        name: Varonis Sensitive Data Alert Escalation
-        summary: Pull the newest open alert and branch on whether it touches classified sensitive data.
-      - url: arazzo/varonis-threat-model-hunt-workflow.yml
-        name: Varonis Threat Model Hunt
-        summary: Resolve a threat model by name, pull its recent alerts, and load the newest alert's events.
-      - url: arazzo/varonis-triage-alert-workflow.yml
-        name: Varonis Triage Newest Alert
-        summary: Pull the newest open alert, load its forensic events, and move it into investigation.
-      - url: arazzo/varonis-user-high-severity-investigation-workflow.yml
-        name: Varonis User High-Severity Investigation
-        summary: Find a user's high-severity alerts, pull the top alert's events, and annotate it.
+  - type: Arazzo
+    url: arazzo/varonis-close-low-severity-noise-workflow.yml
+    name: Varonis Close Low-Severity Noise
+  - type: Arazzo
+    url: arazzo/varonis-device-malicious-ip-response-workflow.yml
+    name: Varonis Device Malicious IP Response
+  - type: Arazzo
+    url: arazzo/varonis-high-severity-model-coverage-workflow.yml
+    name: Varonis High-Severity Model Coverage
+  - type: Arazzo
+    url: arazzo/varonis-investigate-and-close-alert-workflow.yml
+    name: Varonis Investigate and Close Alert
+  - type: Arazzo
+    url: arazzo/varonis-sensitive-data-alert-escalation-workflow.yml
+    name: Varonis Sensitive Data Alert Escalation
+  - type: Arazzo
+    url: arazzo/varonis-threat-model-hunt-workflow.yml
+    name: Varonis Threat Model Hunt
+  - type: Arazzo
+    url: arazzo/varonis-triage-alert-workflow.yml
+    name: Varonis Triage Newest Alert
+  - type: Arazzo
+    url: arazzo/varonis-user-high-severity-investigation-workflow.yml
+    name: Varonis User High-Severity Investigation
   - type: LinkedIn
     url: https://www.linkedin.com/company/varonis
   - type: Portal
@@ -166,7 +163,7 @@ common:
     url: https://www.varonis.com/trust/security
   - type: Login
     url: https://my.varonis.io/
-  - type: SignUp
+  - type: Signup
     url: https://help.varonis.com/s/article/WDOC-2305
   - type: HelpCenter
     url: https://help.varonis.com/s/
