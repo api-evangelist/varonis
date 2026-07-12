@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.varonis.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  7 11:14:20 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.varonis.com
+  https: false
+domains:
+- domain: varonis.com
+  dnssec: false
+  caa:
+  - 0 issue "pki.goog"
+  - 0 issuewild "digicert.com"
+  - 0 issuewild "globalsign.com"
+  - 0 issuewild "godaddy.com"
+  - 0 iodef "mailto:soc@varonis.com"
+  - 0 issue "amazon.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

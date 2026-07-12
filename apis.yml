@@ -115,6 +115,14 @@ include:
   - name: Varonis Support Portal
     url: https://support.varonis.com
 common:
+  - type: TrustCenter
+    url: security/varonis-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/varonis-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/varonis-domain-security.yml
+  - type: Authentication
+    url: authentication/varonis-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/varonis/overview
   - type: Arazzo

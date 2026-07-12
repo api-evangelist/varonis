@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/varonis-datalert-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: API key for authenticating with the Varonis DatAlert API. Generate an API key
+    from the Varonis Web Interface under Configuration, then API Keys. The key must have the
+    Threat Detection Integrator role.
+  sources:
+  - openapi/varonis-datalert-openapi.yml
