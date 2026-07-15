@@ -115,6 +115,8 @@ include:
   - name: Varonis Support Portal
     url: https://support.varonis.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/varonis-agentic-access.yml
   - type: TrustCenter
     url: security/varonis-trust-center.yml
   - type: VulnerabilityDisclosure
