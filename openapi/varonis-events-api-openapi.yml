@@ -1,0 +1,214 @@
+openapi: 3.1.0
+info:
+  title: Varonis DatAlert Alerts Events API
+  description: API for accessing threat detection and incident response capabilities from Varonis DatAlert. Provides endpoints for retrieving alerts, managing alert status, adding notes to alerts, and accessing alerted events for investigation and threat hunting. The DatAlert API enables integration with SIEM and SOAR platforms for centralized security operations.
+  version: '1.0'
+  contact:
+    name: Varonis Support
+    url: https://www.varonis.com/resources/support
+  termsOfService: https://www.varonis.com/terms
+  license:
+    name: Proprietary
+    url: https://www.varonis.com/terms
+servers:
+- url: https://{domain}/api
+  description: Varonis SaaS Instance
+  variables:
+    domain:
+      default: your-instance.varonis.io
+      description: The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.
+security:
+- apiKeyHeader: []
+tags:
+- name: Events
+  description: Access forensic event data associated with specific alerts for investigation and threat hunting.
+paths:
+  /threatdetection/api/alert/alert/GetAlertedEvents:
+    post:
+      operationId: getAlertedEvents
+      summary: Varonis Get Alerted Events
+      description: Retrieves the underlying events associated with a specific alert for forensic investigation. Returns event-level data including operation types, source and destination accounts, affected resources, IP addresses, and geolocation information. Essential for threat hunting and understanding the full scope of a security incident.
+      tags:
+      - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetAlertedEventsRequest'
+            examples:
+              getAlertedEventsRequestExample:
+                summary: Default getAlertedEvents request
+                x-microcks-default: true
+                value:
+                  alertId: example-string
+                  startTime: '2025-03-15T14:30:00Z'
+                  endTime: '2025-03-15T14:30:00Z'
+                  lastDays: 1
+                  extraFields:
+                  - example-string
+                  descendingOrder: true
+      responses:
+        '200':
+          description: Successfully retrieved alerted events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertedEventsResponse'
+              examples:
+                getAlertedEvents200Example:
+                  summary: Default getAlertedEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    events:
+                    - id: example-string
+                      time: '2025-03-15T14:30:00Z'
+                      operationType: example-string
+                      sourceAccount: example-string
+                      destinationAccount: example-string
+                      resource: example-string
+                      ipAddress: 10.1.2.3
+                      ipReputation: example-string
+                      country: example-string
+                      state: example-string
+                      deviceName: example-string
+                    totalCount: 1
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getAlertedEvents400Example:
+                  summary: Default getAlertedEvents 400 response
+                  x-microcks-default: true
+                  value:
+                    error: example-string
+                    message: example-string
+        '401':
+          description: Unauthorized - invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getAlertedEvents401Example:
+                  summary: Default getAlertedEvents 401 response
+                  x-microcks-default: true
+                  value:
+                    error: example-string
+                    message: example-string
+        '404':
+          description: Alert not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                getAlertedEvents404Example:
+                  summary: Default getAlertedEvents 404 response
+                  x-microcks-default: true
+                  value:
+                    error: example-string
+                    message: example-string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GetAlertedEventsRequest:
+      type: object
+      required:
+      - alertId
+      properties:
+        alertId:
+          type: string
+          description: Unique identifier of the alert to retrieve events for.
+        startTime:
+          type: string
+          format: date-time
+          description: Start of the time range for event retrieval.
+        endTime:
+          type: string
+          format: date-time
+          description: End of the time range for event retrieval.
+        lastDays:
+          type: integer
+          minimum: 1
+          description: Retrieve events from the last N days.
+        extraFields:
+          type: array
+          items:
+            type: string
+          description: Additional fields to include in the response.
+        descendingOrder:
+          type: boolean
+          description: When true, results are returned in descending order by time.
+    AlertedEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlertedEvent'
+          description: Array of event objects associated with the specified alert.
+        totalCount:
+          type: integer
+          description: Total number of events associated with the alert.
+    AlertedEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the event.
+        time:
+          type: string
+          format: date-time
+          description: Timestamp when the event occurred.
+        operationType:
+          type: string
+          description: Type of operation performed such as file access, permission change, or login attempt.
+        sourceAccount:
+          type: string
+          description: Account that initiated the operation.
+        destinationAccount:
+          type: string
+          description: Target account affected by the operation.
+        resource:
+          type: string
+          description: Resource path or name affected by the event.
+        ipAddress:
+          type: string
+          format: ipv4
+          description: IP address from which the operation was performed.
+        ipReputation:
+          type: string
+          description: Reputation classification of the IP address.
+        country:
+          type: string
+          description: Country associated with the IP address.
+        state:
+          type: string
+          description: State or region associated with the IP address.
+        deviceName:
+          type: string
+          description: Name of the device from which the operation was performed.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for authenticating with the Varonis DatAlert API. Generate an API key from the Varonis Web Interface under Configuration, then API Keys. The key must have the Threat Detection Integrator role.
+externalDocs:
+  description: Varonis Help Center
+  url: https://help.varonis.com/s/
