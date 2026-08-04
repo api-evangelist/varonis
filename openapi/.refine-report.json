@@ -1,0 +1,18 @@
+{
+  "provider": "varonis",
+  "sources": [
+    "varonis-alerts-api-openapi.yml",
+    "varonis-events-api-openapi.yml",
+    "varonis-threat-models-api-openapi.yml"
+  ],
+  "outputs": [
+    "varonis-alerts-api-openapi.yml",
+    "varonis-events-api-openapi.yml",
+    "varonis-threat-models-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
