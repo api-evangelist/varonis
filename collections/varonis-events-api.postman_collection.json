@@ -1,0 +1,365 @@
+{
+  "item": [
+    {
+      "id": "01dc3faa-68b0-4bf0-8b97-f74b08c503cb",
+      "name": "Events",
+      "description": {
+        "content": "Access forensic event data associated with specific alerts for investigation and threat hunting.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df1b4d78-d25b-4282-b84b-07f4733e8fc5",
+          "name": "Varonis Get Alerted Events",
+          "request": {
+            "name": "Varonis Get Alerted Events",
+            "description": {
+              "content": "Retrieves the underlying events associated with a specific alert for forensic investigation. Returns event-level data including operation types, source and destination accounts, affected resources, IP addresses, and geolocation information. Essential for threat hunting and understanding the full scope of a security incident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "threatdetection",
+                "api",
+                "alert",
+                "alert",
+                "GetAlertedEvents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alertId\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"lastDays\": \"<integer>\",\n  \"extraFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descendingOrder\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "288a376c-997c-4af0-8d0a-c6b37e27afa6",
+              "name": "Successfully retrieved alerted events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetAlertedEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertId\": \"example-string\",\n  \"startTime\": \"2025-03-15T14:30:00Z\",\n  \"endTime\": \"2025-03-15T14:30:00Z\",\n  \"lastDays\": 1,\n  \"extraFields\": [\n    \"example-string\"\n  ],\n  \"descendingOrder\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"id\": \"example-string\",\n      \"time\": \"2025-03-15T14:30:00Z\",\n      \"operationType\": \"example-string\",\n      \"sourceAccount\": \"example-string\",\n      \"destinationAccount\": \"example-string\",\n      \"resource\": \"example-string\",\n      \"ipAddress\": \"10.1.2.3\",\n      \"ipReputation\": \"example-string\",\n      \"country\": \"example-string\",\n      \"state\": \"example-string\",\n      \"deviceName\": \"example-string\"\n    }\n  ],\n  \"totalCount\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d254564e-d628-4510-851f-d7e56c7c33e8",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetAlertedEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertId\": \"example-string\",\n  \"startTime\": \"2025-03-15T14:30:00Z\",\n  \"endTime\": \"2025-03-15T14:30:00Z\",\n  \"lastDays\": 1,\n  \"extraFields\": [\n    \"example-string\"\n  ],\n  \"descendingOrder\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example-string\",\n  \"message\": \"example-string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "143b0e3d-d048-485b-925c-02a2559b505c",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetAlertedEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertId\": \"example-string\",\n  \"startTime\": \"2025-03-15T14:30:00Z\",\n  \"endTime\": \"2025-03-15T14:30:00Z\",\n  \"lastDays\": 1,\n  \"extraFields\": [\n    \"example-string\"\n  ],\n  \"descendingOrder\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example-string\",\n  \"message\": \"example-string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3624b51-243d-4717-b259-0605b0a49e08",
+              "name": "Alert not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetAlertedEvents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alertId\": \"example-string\",\n  \"startTime\": \"2025-03-15T14:30:00Z\",\n  \"endTime\": \"2025-03-15T14:30:00Z\",\n  \"lastDays\": 1,\n  \"extraFields\": [\n    \"example-string\"\n  ],\n  \"descendingOrder\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example-string\",\n  \"message\": \"example-string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-instance.varonis.io",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{domain}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48bf0b77-0edb-4af5-82f0-c8fa6fbf410d",
+    "name": "Varonis DatAlert Alerts Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for accessing threat detection and incident response capabilities from Varonis DatAlert. Provides endpoints for retrieving alerts, managing alert status, adding notes to alerts, and accessing alerted events for investigation and threat hunting. The DatAlert API enables integration with SIEM and SOAR platforms for centralized security operations.\n\nContact Support:\n Name: Varonis Support",
+      "type": "text/plain"
+    }
+  }
+}

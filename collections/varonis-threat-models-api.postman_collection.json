@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "298ac5d4-165a-48f0-ad04-33f9b287397d",
+      "name": "Threat Models",
+      "description": {
+        "content": "Retrieve threat model definitions used to generate alerts, including categories and severity levels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c3f3bd2-6a10-4428-bd3e-8c6576359014",
+          "name": "Varonis Get Threat Models",
+          "request": {
+            "name": "Varonis Get Threat Models",
+            "description": {
+              "content": "Retrieves the list of threat models configured in Varonis DatAlert. Threat models define the behavioral patterns and rules used to generate alerts. Each threat model includes a name, category, severity level, and source classification. Supports optional filtering by name with wildcard support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "threatdetection",
+                "api",
+                "alert",
+                "alert",
+                "GetThreatModels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                  "type": "any",
+                  "value": "{{domain}}",
+                  "key": "domain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7b24059-bcac-41ad-8bd5-11dbf52f8ce1",
+              "name": "Successfully retrieved threat models",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetThreatModels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Abnormal*"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"threatModels\": [\n    {\n      \"id\": \"example-string\",\n      \"name\": \"example-string\",\n      \"category\": \"example-string\",\n      \"severity\": \"Low\",\n      \"source\": \"example-string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de365760-4904-497c-b488-682439a838d3",
+              "name": "Unauthorized - invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threatdetection",
+                    "api",
+                    "alert",
+                    "alert",
+                    "GetThreatModels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Abnormal*"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+                      "type": "any",
+                      "value": "{{domain}}",
+                      "key": "domain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example-string\",\n  \"message\": \"example-string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of your Varonis SaaS instance, typically in the format your-instance.varonis.io.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-instance.varonis.io",
+      "key": "domain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{domain}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04708fb1-efd0-4267-87ab-be55a2f4eff9",
+    "name": "Varonis DatAlert Alerts Threat Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for accessing threat detection and incident response capabilities from Varonis DatAlert. Provides endpoints for retrieving alerts, managing alert status, adding notes to alerts, and accessing alerted events for investigation and threat hunting. The DatAlert API enables integration with SIEM and SOAR platforms for centralized security operations.\n\nContact Support:\n Name: Varonis Support",
+      "type": "text/plain"
+    }
+  }
+}

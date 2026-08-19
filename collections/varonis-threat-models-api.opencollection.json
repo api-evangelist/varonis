@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Varonis DatAlert Alerts Threat Models API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Threat Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Varonis Get Threat Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{domain}/api/threatdetection/api/alert/alert/GetThreatModels",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching."
+              }
+            ]
+          },
+          "docs": "Retrieves the list of threat models configured in Varonis DatAlert. Threat models define the behavioral patterns and rules used to generate alerts. Each threat model includes a name, category, severity level, and source classification. Supports optional filtering by name with wildcard support."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
