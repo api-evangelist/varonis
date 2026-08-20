@@ -74,6 +74,11 @@ apis:
   - AI Integration
   - Automation
   - MCP
+  - Natural-Language
+  tags_raw:
+  - AI Integration
+  - Automation
+  - MCP
   - Natural Language
   properties:
   - type: Documentation
@@ -117,6 +122,8 @@ apis:
   humanURL: https://www.varonis.com/products/datalert
   baseURL: https://api.varonis.com/datalert
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
