@@ -3,6 +3,18 @@ description: >-
   Varonis is a pioneer in data security and analytics, specializing in software for data security, governance, threat
   detection and response. The company provides solutions for protecting enterprise data across cloud and on-premises
   environments including data classification, access governance, behavioral threat detection, and automated remediation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 accessModel:
   pricing: enterprise
