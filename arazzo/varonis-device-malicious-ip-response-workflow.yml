@@ -11,8 +11,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: datalertApi
-  url: ../openapi/varonis-datalert-openapi.yml
+- name: alertsApi
+  url: ../openapi/varonis-alerts-api-openapi.yml
+  type: openapi
+- name: eventsApi
+  url: ../openapi/varonis-events-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: device-malicious-ip-response

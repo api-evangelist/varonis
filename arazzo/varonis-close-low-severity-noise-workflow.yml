@@ -10,8 +10,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: datalertApi
-  url: ../openapi/varonis-datalert-openapi.yml
+- name: alertsApi
+  url: ../openapi/varonis-alerts-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: close-low-severity-noise
