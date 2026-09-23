@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Varonis DatAlert Alerts Events API
+  title: Varonis DatAlert Events API
   description: API for accessing threat detection and incident response capabilities from Varonis DatAlert. Provides endpoints for retrieving alerts, managing alert status, adding notes to alerts, and accessing alerted events for investigation and threat hunting. The DatAlert API enables integration with SIEM and SOAR platforms for centralized security operations.
   version: '1.0'
   contact:
@@ -117,45 +117,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    GetAlertedEventsRequest:
-      type: object
-      required:
-      - alertId
-      properties:
-        alertId:
-          type: string
-          description: Unique identifier of the alert to retrieve events for.
-        startTime:
-          type: string
-          format: date-time
-          description: Start of the time range for event retrieval.
-        endTime:
-          type: string
-          format: date-time
-          description: End of the time range for event retrieval.
-        lastDays:
-          type: integer
-          minimum: 1
-          description: Retrieve events from the last N days.
-        extraFields:
-          type: array
-          items:
-            type: string
-          description: Additional fields to include in the response.
-        descendingOrder:
-          type: boolean
-          description: When true, results are returned in descending order by time.
-    AlertedEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertedEvent'
-          description: Array of event objects associated with the specified alert.
-        totalCount:
-          type: integer
-          description: Total number of events associated with the alert.
     AlertedEvent:
       type: object
       properties:
@@ -194,6 +155,45 @@ components:
         deviceName:
           type: string
           description: Name of the device from which the operation was performed.
+    AlertedEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlertedEvent'
+          description: Array of event objects associated with the specified alert.
+        totalCount:
+          type: integer
+          description: Total number of events associated with the alert.
+    GetAlertedEventsRequest:
+      type: object
+      required:
+      - alertId
+      properties:
+        alertId:
+          type: string
+          description: Unique identifier of the alert to retrieve events for.
+        startTime:
+          type: string
+          format: date-time
+          description: Start of the time range for event retrieval.
+        endTime:
+          type: string
+          format: date-time
+          description: End of the time range for event retrieval.
+        lastDays:
+          type: integer
+          minimum: 1
+          description: Retrieve events from the last N days.
+        extraFields:
+          type: array
+          items:
+            type: string
+          description: Additional fields to include in the response.
+        descendingOrder:
+          type: boolean
+          description: When true, results are returned in descending order by time.
     ErrorResponse:
       type: object
       properties:
