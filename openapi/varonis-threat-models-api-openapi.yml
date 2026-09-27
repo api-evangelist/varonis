@@ -68,6 +68,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ThreatModelsResponse:
+      type: object
+      properties:
+        threatModels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatModel'
+          description: Array of threat model objects.
     ThreatModel:
       type: object
       properties:
@@ -90,23 +107,6 @@ components:
         source:
           type: string
           description: Source or origin of the threat model such as built-in or custom.
-    ThreatModelsResponse:
-      type: object
-      properties:
-        threatModels:
-          type: array
-          items:
-            $ref: '#/components/schemas/ThreatModel'
-          description: Array of threat model objects.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error.
-        message:
-          type: string
-          description: Human-readable description of the error.
   parameters:
     ThreatModelName:
       name: name
