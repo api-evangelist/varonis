@@ -117,15 +117,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error.
-        message:
-          type: string
-          description: Human-readable description of the error.
     GetAlertedEventsRequest:
       type: object
       required:
@@ -203,6 +194,15 @@ components:
         totalCount:
           type: integer
           description: Total number of events associated with the alert.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

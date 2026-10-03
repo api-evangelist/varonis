@@ -351,27 +351,28 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error.
-        message:
-          type: string
-          description: Human-readable description of the error.
-    AddNoteRequest:
+    CloseAlertRequest:
       type: object
       required:
       - alertId
-      - note
+      - closeReason
       properties:
         alertId:
           type: string
-          description: Unique identifier of the alert to add the note to.
+          description: Unique identifier of the alert to close.
+        closeReason:
+          type: string
+          enum:
+          - Resolved
+          - Misconfiguration
+          - Threat model disabled or deleted
+          - Account misclassification
+          - Legitimate activity
+          - Other
+          description: Reason for closing the alert. Helps track resolution patterns.
         note:
           type: string
-          description: Text content of the note to add to the alert.
+          description: Optional note to provide additional context for closing the alert.
     Alert:
       type: object
       properties:
@@ -462,6 +463,35 @@ components:
         containsSensitiveData:
           type: boolean
           description: Whether the affected resource contains classified sensitive data.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates whether the operation completed successfully.
+        message:
+          type: string
+          description: Human-readable message describing the result.
+    AlertsResponse:
+      type: object
+      properties:
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          description: Array of alert objects matching the filter criteria.
+        totalCount:
+          type: integer
+          description: Total number of alerts matching the filter criteria.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
     UpdateAlertStatusRequest:
       type: object
       required:
@@ -480,48 +510,6 @@ components:
         note:
           type: string
           description: Optional note to document the reason for the status change.
-    CloseAlertRequest:
-      type: object
-      required:
-      - alertId
-      - closeReason
-      properties:
-        alertId:
-          type: string
-          description: Unique identifier of the alert to close.
-        closeReason:
-          type: string
-          enum:
-          - Resolved
-          - Misconfiguration
-          - Threat model disabled or deleted
-          - Account misclassification
-          - Legitimate activity
-          - Other
-          description: Reason for closing the alert. Helps track resolution patterns.
-        note:
-          type: string
-          description: Optional note to provide additional context for closing the alert.
-    AlertsResponse:
-      type: object
-      properties:
-        alerts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
-          description: Array of alert objects matching the filter criteria.
-        totalCount:
-          type: integer
-          description: Total number of alerts matching the filter criteria.
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates whether the operation completed successfully.
-        message:
-          type: string
-          description: Human-readable message describing the result.
     GetAlertsRequest:
       type: object
       properties:
@@ -583,6 +571,18 @@ components:
           type: integer
           minimum: 0
           description: Number of alerts to skip for pagination.
+    AddNoteRequest:
+      type: object
+      required:
+      - alertId
+      - note
+      properties:
+        alertId:
+          type: string
+          description: Unique identifier of the alert to add the note to.
+        note:
+          type: string
+          description: Text content of the note to add to the alert.
   securitySchemes:
     apiKeyHeader:
       type: apiKey
