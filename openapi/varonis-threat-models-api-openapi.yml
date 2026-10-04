@@ -67,7 +67,24 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    ThreatModelName:
+      name: name
+      in: query
+      required: false
+      description: Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching.
+      schema:
+        type: string
+        example: Abnormal*
   schemas:
+    ThreatModelsResponse:
+      type: object
+      properties:
+        threatModels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatModel'
+          description: Array of threat model objects.
     ThreatModel:
       type: object
       properties:
@@ -99,23 +116,6 @@ components:
         message:
           type: string
           description: Human-readable description of the error.
-    ThreatModelsResponse:
-      type: object
-      properties:
-        threatModels:
-          type: array
-          items:
-            $ref: '#/components/schemas/ThreatModel'
-          description: Array of threat model objects.
-  parameters:
-    ThreatModelName:
-      name: name
-      in: query
-      required: false
-      description: Filter threat models by name. Supports pipe-separated values and wildcard characters for pattern matching.
-      schema:
-        type: string
-        example: Abnormal*
   securitySchemes:
     apiKeyHeader:
       type: apiKey
