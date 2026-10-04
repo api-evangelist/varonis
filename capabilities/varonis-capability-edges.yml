@@ -1,0 +1,46 @@
+slug: varonis
+provider: Varonis
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Alerts
+  spec_file: varonis-alerts-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.92
+  evidence: '"API for accessing threat detection and incident response capabilities from Varonis DatAlert";
+    operations "Varonis Get Alerts", "Varonis Update Alert Status", "Varonis Close Alert"; "enables integration
+    with SIEM and SOAR platforms for centralized security operations"'
+  reason: Alerts here are security detection alerts triaged through SIEM/SOAR workflows — squarely Threat
+    Detection & Response Management, not financial-crime or monitoring-platform alerting.
+- tag: Events
+  spec_file: varonis-events-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.88
+  evidence: POST /threatdetection/api/alert/alert/GetAlertedEvents — "Varonis Get Alerted Events"; "accessing
+    alerted events for investigation and threat hunting"
+  reason: Events are security events attached to detection alerts, retrieved for investigation and threat
+    hunting — SOC/threat response capability.
+- tag: Threat Models
+  spec_file: varonis-threat-models-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.85
+  evidence: GET /threatdetection/api/alert/alert/GetThreatModels — "Varonis Get Threat Models"; schema
+    "ThreatModel"
+  reason: Threat models are the detection rules behind DatAlert alerting; retrieving them is part of security
+    threat detection and response configuration/investigation.

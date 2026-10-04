@@ -195,6 +195,9 @@ include:
   - name: Varonis Support Portal
     url: https://support.varonis.com
 common:
+  - type: CapabilityMap
+    url: capabilities/varonis-capability-edges.yml
+    name: Varonis Business Capability Map
   - type: AgenticAccess
     url: agentic-access/varonis-agentic-access.yml
   - type: TrustCenter
