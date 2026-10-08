@@ -195,6 +195,12 @@ include:
   - name: Varonis Support Portal
     url: https://support.varonis.com
 common:
+  - type: Plans
+    url: plans/varonis-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/varonis-rate-limits.yml
+  - type: FinOps
+    url: finops/varonis-finops.yml
   - type: CapabilityMap
     url: capabilities/varonis-capability-edges.yml
     name: Varonis Business Capability Map
