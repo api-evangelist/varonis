@@ -351,18 +351,46 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AddNoteRequest:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    CloseAlertRequest:
       type: object
       required:
       - alertId
-      - note
+      - closeReason
       properties:
         alertId:
           type: string
-          description: Unique identifier of the alert to add the note to.
+          description: Unique identifier of the alert to close.
+        closeReason:
+          type: string
+          enum:
+          - Resolved
+          - Misconfiguration
+          - Threat model disabled or deleted
+          - Account misclassification
+          - Legitimate activity
+          - Other
+          description: Reason for closing the alert. Helps track resolution patterns.
         note:
           type: string
-          description: Text content of the note to add to the alert.
+          description: Optional note to provide additional context for closing the alert.
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates whether the operation completed successfully.
+        message:
+          type: string
+          description: Human-readable message describing the result.
     GetAlertsRequest:
       type: object
       properties:
@@ -435,33 +463,6 @@ components:
         totalCount:
           type: integer
           description: Total number of alerts matching the filter criteria.
-    UpdateAlertStatusRequest:
-      type: object
-      required:
-      - alertId
-      - status
-      properties:
-        alertId:
-          type: string
-          description: Unique identifier of the alert to update.
-        status:
-          type: string
-          enum:
-          - Open
-          - Under Investigation
-          description: New status for the alert. Use CloseAlert endpoint to close.
-        note:
-          type: string
-          description: Optional note to document the reason for the status change.
-    SuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates whether the operation completed successfully.
-        message:
-          type: string
-          description: Human-readable message describing the result.
     Alert:
       type: object
       properties:
@@ -552,37 +553,36 @@ components:
         containsSensitiveData:
           type: boolean
           description: Whether the affected resource contains classified sensitive data.
-    CloseAlertRequest:
+    AddNoteRequest:
       type: object
       required:
       - alertId
-      - closeReason
+      - note
       properties:
         alertId:
           type: string
-          description: Unique identifier of the alert to close.
-        closeReason:
-          type: string
-          enum:
-          - Resolved
-          - Misconfiguration
-          - Threat model disabled or deleted
-          - Account misclassification
-          - Legitimate activity
-          - Other
-          description: Reason for closing the alert. Helps track resolution patterns.
+          description: Unique identifier of the alert to add the note to.
         note:
           type: string
-          description: Optional note to provide additional context for closing the alert.
-    ErrorResponse:
+          description: Text content of the note to add to the alert.
+    UpdateAlertStatusRequest:
       type: object
+      required:
+      - alertId
+      - status
       properties:
-        error:
+        alertId:
           type: string
-          description: Error code identifying the type of error.
-        message:
+          description: Unique identifier of the alert to update.
+        status:
           type: string
-          description: Human-readable description of the error.
+          enum:
+          - Open
+          - Under Investigation
+          description: New status for the alert. Use CloseAlert endpoint to close.
+        note:
+          type: string
+          description: Optional note to document the reason for the status change.
   securitySchemes:
     apiKeyHeader:
       type: apiKey

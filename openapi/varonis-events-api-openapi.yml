@@ -117,6 +117,26 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AlertedEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlertedEvent'
+          description: Array of event objects associated with the specified alert.
+        totalCount:
+          type: integer
+          description: Total number of events associated with the alert.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code identifying the type of error.
+        message:
+          type: string
+          description: Human-readable description of the error.
     GetAlertedEventsRequest:
       type: object
       required:
@@ -183,26 +203,6 @@ components:
         deviceName:
           type: string
           description: Name of the device from which the operation was performed.
-    AlertedEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/AlertedEvent'
-          description: Array of event objects associated with the specified alert.
-        totalCount:
-          type: integer
-          description: Total number of events associated with the alert.
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code identifying the type of error.
-        message:
-          type: string
-          description: Human-readable description of the error.
   securitySchemes:
     apiKeyHeader:
       type: apiKey
