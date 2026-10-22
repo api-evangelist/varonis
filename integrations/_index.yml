@@ -140,9 +140,12 @@
       product_type: Other Devices and Systems
       standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
       lapsed: true
+      partner_tier: EAL2+,ALC_FLR.2
       protection_profiles:
       - PP_APP_V1.3
+      - PP_APP_V1.4
       schemes:
+      - ES
       - US
     signal_note: 'certified_products = one entry per Common Criteria product CATEGORY held (highest EAL for that
       category in partner_tier; a category held only among archived certificates is lapsed: true); certificate and
@@ -150,8 +153,46 @@
     detected_by: sweep-common-criteria-certified-products.py
     detected: '2026-10-21'
     register_name_note: register-name 'varonis' = varonis; no wikidata P856
+    other_registrations:
+    - Varonis Systems, Inc.
     identity_source: register-name
     identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
       P856 not contradicting (Kin 2026-10-20 decision 2)
+  status: not-a-workflow
+  arazzo: null
+- slug: varonis-niap-product-compliant-list-us-ccevs
+  label: NIAP Product Compliant List (US CCEVS)
+  partner_name: NIAP Product Compliant List (US CCEVS)
+  category: NIAP Protection Profile conformance (US Common Criteria scheme)
+  type: register
+  channel: standard-directory
+  evidence: https://www.niap-ccevs.org/Product/PCL.cfm
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: NIAP Product Compliant List (niap-ccevs.org/Product/PCL.cfm; public JSON /api/project/product/pcl_products_all/)
+    standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security
+      Evaluation (CCRA)
+    spec_file: null
+    role: niap-pcl-vendor
+    registered_name: Varonis Systems, Inc.
+    matched_domain: varonis.com
+    matched_by: domain
+    signal_note: 'certified_products = one entry per NIAP technology type with a Certified (current) or Archived
+      (lapsed: true) PCL product, Protection Profiles named; products In Progress are listing only (in_evaluation),
+      never certified; product counts are context, never counted'
+    detected_by: sweep-common-criteria-certified-products.py
+    detected: '2026-10-21'
+    certified_products:
+    - product: Application Software
+      product_type: Application Software
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
+        Security Evaluation (CCRA)
+      protection_profiles:
+      - PP_APP_v1.3
+      - PP_APP_v1.4
+    identity: wikidata Q19903773 'Varonis Systems' P856 https://www.varonis.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   status: not-a-workflow
   arazzo: null
