@@ -68,6 +68,11 @@ apis:
   tags:
   - Access Governance
   - Entitlement Reviews
+  - Identity and Access Management
+  - Self-Service Access
+  tags_raw:
+  - Access Governance
+  - Entitlement Reviews
   - Identity Management
   - Self-Service Access
   properties:
